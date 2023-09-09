@@ -1,0 +1,91 @@
+header #panel:hover ~ #_submenu {
+  display: block !important;
+  visibility: visible !important;
+}
+
+#_submenu {
+  top: 4rem !important;
+}
+
+#_submenu:hover {
+  display: block !important;
+  visibility: visible !important;
+}
+
+.pb-full {
+  padding-bottom: 100%;
+}
+
+/* hide search icon on search focus */
+.search-bar:focus + .fa-search {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .post:hover .overlay {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .aside_menu {
+    display: none !important;
+  }
+}
+
+.registration_form .item:nth-child(1) input, .registration_form .item:nth-child(1) select {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.registration_form .item:nth-child(1) input[type="date"], .registration_form .item:nth-child(1) select[type="date"] {
+  margin-top: 0px;
+}
+
+.registration_form .item:nth-child(1) input.required, .registration_form .item:nth-child(1) select.required {
+  border: 1px solid #ff0000;
+}
+
+.registration_form .item:nth-child(2) {
+  background-image: url(/src/images/register.png);
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 768px) {
+  .registration_form .item:nth-child(2) {
+    display: none !important;
+  }
+}
+
+.user_list ._user_list_container {
+  width: 100% !important;
+}
+
+.user_list ._user_list_container table {
+  width: 100% !important;
+}
+
+#form_container ._step.hidden {
+  display: none;
+}
+
+#dataTable tbody tr:nth-child(odd) {
+  background: white;
+}
+
+#dataTable tbody tr:nth-child(odd) td {
+  font-weight: bold;
+  padding: 1rem;
+}
+
+#dataTable tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+#dataTable tbody tr:nth-child(even) td {
+  font-weight: bold;
+  padding: 1rem;
+}
+/*# sourceMappingURL=styles.css.map */

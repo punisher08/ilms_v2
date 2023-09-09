@@ -1,0 +1,97 @@
+header{
+    #panel:hover  ~ #_submenu{
+        
+            display: block !important;
+            visibility: visible !important;
+        
+    }
+}
+#_submenu{
+    top: 4rem !important;
+}
+#_submenu:hover{
+    display: block !important;
+    visibility: visible !important;
+}
+.pb-full {
+    padding-bottom: 100%;
+  }
+  
+  /* hide search icon on search focus */
+  .search-bar:focus + .fa-search{
+    display: none;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .post:hover .overlay {
+      display: block;
+    }
+  }
+  .aside_menu{
+    @media screen and (max-width: 768px) {
+        display: none !important;
+    }
+  }
+
+  .registration_form{
+    .item:nth-child(1){
+      input,select{
+        &[type="date"]{
+          margin-top: 0px;
+        }
+        margin-top: 20px;
+        padding: 10px;
+        &.required{
+          border: 1px solid #ff0000;
+        }
+      }
+      
+    }
+    .item:nth-child(2){
+      background-image: url(/src/images/register.png);
+      height: 100vh;
+      background-size: cover;
+      background-repeat: no-repeat;
+      @media screen and (max-width: 768px) {
+        display: none !important;
+    }
+    }
+  }
+
+  .user_list{
+      ._user_list_container{
+        width: 100% !important;
+        table{
+          width: 100% !important;
+        }
+    }
+  }
+  #form_container{
+    ._step{
+     
+      &.hidden{
+        display: none;
+      }
+    }
+  }
+  #dataTable{
+    tbody{
+      tr:nth-child(odd){
+        background: white;
+        td{
+          font-weight: bold;
+          padding: 1rem;
+        }
+      }
+      tr:nth-child(even){
+        background:#f9fafb;
+        td{
+          font-weight: bold;
+          padding: 1rem;
+        }
+      }
+    }
+  }
+
+
+  
