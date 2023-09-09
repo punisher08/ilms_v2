@@ -58,10 +58,11 @@ class HomeController extends Redirect {
             header('Location: /signup?existing=true');
             
         } else {
-            // $this->addUser($student_number, $first_name, $last_name, $middle_name, $gender, $dob, $age, $contact, $address, $email,$college,$year_level,$program,$major,$site_name);
-            $query = $this->db->prepare("INSERT INTO `master_list` (student_number, first_name, last_name, middle_name, gender, dob, age, contact, address, email,college,year_level,program,major,site_name,created_at) 
-            VALUES (:student_number, :first_name, :last_name, :middle_name, :gender, :dob, :age, :contact, :address, :email,:college,:year_level,:program,:major,:site_name,NOW())");
+            $status = 0;
+            $query = $this->db->prepare("INSERT INTO `master_list` (student_number, status,  first_name, last_name, middle_name, gender, dob, age, contact, address, email,college,year_level,program,major,site_name,created_at) 
+            VALUES (:student_number, :status, :first_name, :last_name, :middle_name, :gender, :dob, :age, :contact, :address, :email,:college,:year_level,:program,:major,:site_name,NOW())");
             $query->bindParam(':student_number', ($student_number));
+            $query->bindParam(':status', ( $status));
             $query->bindParam(':first_name', ($first_name));
             $query->bindParam(':last_name', ($last_name));
             $query->bindParam(':middle_name', ($middle_name));
@@ -82,14 +83,14 @@ class HomeController extends Redirect {
         }
     }
         
-        private function checkUserExists($email,$student_number) {
-            $query = $this->db->prepare("SELECT * FROM `master_list` WHERE `email` = :email OR `student_number` = :student_number");
-            $query->bindParam(':email', $email);
-            $query->bindParam(':student_number', $student_number);
-            $query->execute();
-            $user = $query->fetch();
-            return !empty($user);
-        }
+    private function checkUserExists($email,$student_number) {
+        $query = $this->db->prepare("SELECT * FROM `master_list` WHERE `email` = :email OR `student_number` = :student_number");
+        $query->bindParam(':email', $email);
+        $query->bindParam(':student_number', $student_number);
+        $query->execute();
+        $user = $query->fetch();
+        return !empty($user);
+    }
 
     public function validateUser(){
         $postData = file_get_contents("php://input");
@@ -127,7 +128,22 @@ class HomeController extends Redirect {
             $stmt->bindParam(':expiry', $expiry);
             $stmt->bindParam(':email', $this->email);
             $stmt->execute();
+            // Get the ID
+            if ($stmt->rowCount() > 0) {
+                // The UPDATE operation was successful; now, fetch the ID of the updated row
+                $stmt = $this->db->prepare("SELECT * FROM `users` WHERE email = :email");
+                $stmt->bindParam(':email', $this->email);
+                $stmt->execute();
+            
+                $row = $stmt->fetch();
+                if($row){
+                    $id = $row['id'];
+                    $timestamp = strtotime($row['password_token_exp']);
+                }
+            }
+            
             require_once dirname(__DIR__).'/plugins/phpmailer.php';
+            $base_url = $_SERVER['HTTP_HOST'];
             try {
                 //code...
                 $mail->addAddress($this->email);
@@ -135,12 +151,12 @@ class HomeController extends Redirect {
                 $mail->Subject = 'Reset Password';
                 $mail->Body = 'To reset your password please click the link below:';
                 $mail->Body = <<<END
-                Click <a href="http://ilms_v2.test/password/reset/form?token=$token">here</a> 
+                Click <a href="$base_url/password/reset/form?id=$id&token=$token&token_id=$token_hash&exp=$timestamp">here</a> 
                 to reset your password.
                 END;
                 $mail->send();
 
-                $response = ['message' => 'Email Sent','result' => true];
+                $response = [ 'message' => 'Email Sent','result' => true];
             } catch (\Throwable $th) {
                 //throw $th;
                 $response = ['message' => 'Email Not Sent','result' => false];
@@ -148,9 +164,13 @@ class HomeController extends Redirect {
         }else{
             $response = ['message' => 'Email Not Sent','result' => false];
         }
-
-        
-        echo json_encode($response);
+        if($response['result']){
+            header("Location: $base_url/password/reset?sent=true&message=Email Sent!");
+            exit;
+        }else{
+            header("Location: $base_url/password/reset?failed=true");
+            exit;
+        }
     }
     public function emailTest(){
         $query = $this->db->prepare("SELECT * FROM `users` WHERE `email` = :email");
@@ -166,9 +186,36 @@ class HomeController extends Redirect {
     }
 
     public function createNewpassword(){
-        // $postData = file_get_contents("php://input");
-        // $data = json_decode($postData);
+        
+        // validate new password here
         return $this->view($this->config, 'auth/change_password');
+       
     }
+    public function update_password(){
+        
+       $id = $_POST['id'];
+       $token = $_POST['token'];
+       $token_id = $_POST['token_id'];
+       $password = $_POST['password'];
+       $confirm_password = $_POST['confirm_password'];
+       $expiryTimestamp = $_POST['exp'];
+       if($password === $confirm_password){
+            $currentTimestamp = time();
+            $user_token = hash("sha256", $token);
+            if($user_token === $token_id && $currentTimestamp <= $expiryTimestamp){
+                $pass = password_hash($password, PASSWORD_DEFAULT);
+                $query = $this->db->prepare("UPDATE `users` SET `password` = :password WHERE id = $id");
+                $query->bindParam(':password', $pass);
+                $result = $query->execute();
+                header("Location: $base_url/password/reset?sent=true&message=Password Updated!");
+                exit();
+            }else{
+                header("Location: $base_url/password/reset?failed=true&message=Error!");
+                exit();
+            }
+       }
+
+    }
+
 
 }

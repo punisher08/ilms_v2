@@ -10,9 +10,9 @@ if (file_exists($autoloadPath )  && file_exists($configPath ) ) {
     require_once (__DIR__.'/config.php');
 } 
 
-
 // Get the requested URL path
 $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+// print_r($_SERVER['HTTP_HOST']);
 
 // Define mapping of URL paths to corresponding controller actions
 $routes = [
@@ -23,14 +23,24 @@ $routes = [
     '/api/userList' => 'HomeController@validateUser',
     
     // Authenticated User
-    '/welcome' => 'UserController@index',
+    '/dashboard' => 'UserController@index',
     '/signin' => 'UserController@signin',
     '/logout' => 'UserController@signout',
     '/profile' => 'UserController@profile',
-    '/users/all' => 'UserController@getAllUsers',
+    '/masterlist' => 'UserController@getAllUsers',
+    '/masterlist/add' => 'UserController@addStudent',
+    '/masterlist/register' => 'UserController@register',
     '/password/reset' => 'HomeController@resetPassword',
     '/send/password/reset' => 'HomeController@sendResetPassword',
     '/password/reset/form' => 'HomeController@createNewpassword',
+    
+    // update password
+    '/password/update' => 'HomeController@update_password',
+
+
+    // from another app
+    '/api/web/v1/get/masterlist' => 'WebController@test',
+
  
 ];
 // Find the corresponding route or use a default route

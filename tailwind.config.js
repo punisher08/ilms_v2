@@ -5,6 +5,7 @@ module.exports = {
     "./views/*.{php,html,js}",
     "./views/layout/*.{php,html,js}",
     "./views/auth/*.{php,html,js}",
+    "./views/admin/*.{php,html,js}",
   ],
   theme: {
     extend: {},

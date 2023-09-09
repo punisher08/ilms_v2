@@ -115,10 +115,12 @@ async function validateUserId(student_id) {
 })();
 
 
-
-nextButton.addEventListener('click',async () => {
-    await next();
-});
-prevButton.addEventListener('click',async () => {
-    await prev();
-});
+if(nextButton){
+    nextButton.addEventListener('click',async () => {
+        await next();
+    });
+}else if(prevButton){
+    prevButton.addEventListener('click',async () => {
+        await prev();
+    });
+}

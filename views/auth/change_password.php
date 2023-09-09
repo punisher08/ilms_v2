@@ -18,8 +18,11 @@
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" action="/change/password" method="POST">
+    <form class="space-y-6" action="/password/update" method="post">
+        <input type="hidden" name="id" id="id" value="<?php echo $_GET['id'];?>">
         <input type="hidden" name="token" id="token" value="<?php echo $_GET['token'];?>">
+        <input type="hidden" name="token_id" id="token_id" value="<?php echo $_GET['token_id'];?>">
+        <input type="hidden" name="exp" id="exp" value="<?php echo $_GET['exp'];?>">
       <div>
         <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Create New Password</label>
         <div class="mt-2">
@@ -29,7 +32,7 @@
       <div>
         <label for="confirm_password" class="block text-sm font-medium leading-6 text-gray-900">Confirm Password</label>
         <div class="mt-2">
-          <input id="confirm_password" name="confirm_password" type="confirm_password"  required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          <input id="confirm_password" name="confirm_password" type="password"  required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
         </div>
       </div>
       <div>
@@ -42,6 +45,8 @@
       <a href="/login" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Login</a>
     </p>
   </div>
+  <!--  -->
+  
 </div>
 </body>
 </html>

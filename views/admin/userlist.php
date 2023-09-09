@@ -1,404 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/css/styles.css">
-    <link rel="stylesheet" href="/src/css/admin.css">
-    <link rel="stylesheet" href="/src/css/tailwind.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>ADMIN TEMPLATE</title>
-</head>
-
-<body>
-    <div class="flex bg-gray-100 min-h-screen" id="app">
-        <aside class="flex flex-col aside_menu">
-            <a href="#"
-                class="inline-flex items-center justify-center h-20 w-full bg-blue-600 hover:bg-blue-500 focus:bg-blue-500">
-                <svg class="h-12 w-12 text-white" fill="currentColor" version="1.1" viewBox="0 0 215 215" stroke="none"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#"
-                    xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
-                    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                    <title>Company logo</title>
-                    <path transform="matrix(1.28 0 0 1.28 13.057 10.462)"
-                        d="m121.65 15.95-11.2 11.2q-5.9-4.75-12.8-7.3-5.7-2.35-10.05-3.15v-16.7h-22.8v16.35l-6.9 1.75q-8.1 2.55-16.15 7.5l-11.6-11.65-15.95 15.75 11.8 11.65q-6.1 8.85-8.85 19.65l-0.8 4.55h-16.35v21.65h16.75l2.15 7.45q2.35 7.9 7.3 14.4l-12 11.6 15.35 15.35 12-11.8 6.5 3.95q8.85 4.3 16.75 5.7v16.15h22.8v-16.55q8.05-1.8 15.75-5.7l5.55-3.35 11.4 11.4 16.15-16.15-11.25-11.4q5.1-7.85 7.5-16.9l1.2-4.15h16.1v-21.65h-15.75q-1.55-8.5-4.5-15.35l-3.55-5.9 12-12.05-16.55-16.3m-7.65 58.85q-0.05 15.9-11.25 27.55-11.6 11-27.55 11-16.15 0-27.55-11.4-11.2-10.85-11.2-27.15 0-15.95 11.2-27.55 11.8-11.25 27.55-11.25 15.75 0 27.55 11.25 11.2 11.8 11.25 27.55"
-                        stroke-linecap="square" stroke-width="1" />
-                    <path transform="matrix(.34872 0 0 .34872 83.818 78.7)"
-                        d="m144.75 65.137-94.088 94.088-50.662-50.663v-65.138l50.662 50.663 94.088-94.088v65.137"
-                        stroke-linecap="square" stroke-width="6" />
-                </svg>
-            </a>
-            <div class="flex-grow flex flex-col justify-between text-gray-500 bg-gray-800">
-                <nav class="flex flex-col mx-4 my-6 space-y-4">
-                    <a href="#" class="inline-flex items-center py-3 hover:text-gray-400 bg-white  rounded-lg px-2 "
-                        :class="`${menu ? '' : 'justify-center'}`">
-                        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                        </svg>
-                        <span class="ml-2" v-if="menu">Folders</span>
-                    </a>
-                    <a href="#"
-                        class="inline-flex items-center py-3 hover:text-gray-400  hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2 "
-                        :class="`${menu ? '' : 'justify-center'}`">
-                        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                        <span class="ml-2" v-if="menu">Dashboard</span>
-                    </a>
-                    <a href="#"
-                        class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2 "
-                        :class="`${menu ? '' : 'justify-center'}`">
-                        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                        <span class="ml-2" v-if="menu">Messages</span>
-                    </a>
-                    <a href="#"
-                        class="inline-flex items-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg px-2 "
-                        :class="`${menu ? '' : 'justify-center'}`">
-                        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                        </svg>
-                        <span class="ml-2" v-if="menu">Documents</span>
-                    </a>
-                </nav>
-                <div class="flex justify-end">
-                    <a class="inline-flex p-3 hover:text-gray-400 justify-center border-gray-700 h-15 w-full border-t hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 px-2"
-                        :class="`${menu ? '' : 'justify-center'}`">
-                        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <span class="ml-2" v-if="menu">Settings</span>
-                    </a>
+<?php include dirname(__DIR__).'/layout/header.php' ;?>
+<!-- component -->
+<div class="sm:px-6 w-full">
+<!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+            <div class="px-4 md:px-10 py-4 md:py-7">
+                <div class="flex items-center justify-between">
+                    <p tabindex="0" class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Master Lists</p>
                 </div>
             </div>
-        </aside>
-        <div class="flex-grow text-gray-800">
-            <header class="flex items-center h-20 px-6 sm:px-10 bg-white">
-                <div class="mr-8 cursor-pointer" @click="menu = !menu">
-                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </div>
-                <div class="relative w-full max-w-md sm:-ml-2">
-                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"
-                        class="absolute h-6 w-6 mt-2.5 ml-2 text-gray-400">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <input type="text" role="search" placeholder="Search..."
-                        class="py-2 pl-10 pr-4 w-full border-4 border-transparent placeholder-gray-400 focus:bg-gray-50 rounded-lg" />
-                </div>
-                <div class="flex flex-shrink-0 items-center ml-auto">
-                    <button class="relative inline-flex items-center p-2 hover:bg-gray-100 focus:bg-gray-100 rounded-lg"
-                        @click="panel = !panel" id="panel">
-                        <span class="sr-only">User Menu</span>
-                        <div class="hidden md:flex md:flex-col md:items-end md:leading-tight ">
-                            <p class="font-semibold capitalize">
-                                <?=$_SESSION['first_name'].' '.$_SESSION['middle_name'].' '.$_SESSION['last_name'];?>
-                            </p>
-                            <span class="text-sm text-gray-600"><?=$_SESSION['role'];?></span>
-                        </div>
-                        <span class="h-12 w-12 ml-2 sm:ml-3 mr-2 bg-gray-100 rounded-full overflow-hidden">
-                            <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="user profile photo"
-                                class="h-full w-full object-cover">
-                        </span>
-                        <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"
-                            class="hidden sm:block h-6 w-6 text-gray-300">
-                            <path fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd" />
-                        </svg>
+            <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+                <div class="sm:flex items-center justify-between">
+                    <div class="flex items-center">
+
+                    </div>
+                    <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
+                        <a href="/masterlist/add"><p class="text-sm font-medium leading-none text-white">Add Student</p></a>
                     </button>
-                    <div class="absolute top-20 bg-white border rounded-md p-2 w-56 " id="_submenu" x-show="panel"
-                        :class="`${panel ? '' : 'hidden'}`">
-                        <div class="p-2 hover:bg-blue-100 cursor-pointer"><a href="/profile">Profile</a></div>
-                        <div class="p-2 hover:bg-blue-100 cursor-pointer">Messages</div>
-                        <div class="p-2 hover:bg-blue-100 cursor-pointer">To-Do's</div>
-                    </div>
-                    <div class="border-l pl-3 ml-3 space-x-1">
-                        <button
-                            class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
-                            <span class="sr-only">Notifications</span>
-                            <span class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
-                            <span
-                                class="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
-                            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                class="h-6 w-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                            </svg>
-                        </button>
-                        <a href="/logout">
-                            <button
-                                class="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full">
-                                <span class="sr-only">Log out</span>
-                                <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                    class="h-6 w-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                                </svg>
-                            </button>
-                        </a>
-                    </div>
                 </div>
-            </header>
-            
-            <main class="p-6 sm:p-10 space-y-6">
-                <section class="user_list">
-                    <div class="container mx-auto px-4 sm:px-8">
-                        <div class="py-8">
-                            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                                <div class="inline-block min-w-full shadow-md rounded-lg overflow-hidden _user_list_container">
-                                    <table class="min-w-full leading-normal">
-                                        <thead>
-                                            <tr>
-                                                <th
-                                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                                    Client / Invoice
-                                                </th>
-                                                <th
-                                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                                    Amount
-                                                </th>
-                                                <th
-                                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                                    Issued / Due
-                                                </th>
-                                                <th
-                                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                                                    Status
-                                                </th>
-                                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <div class="flex">
-                                                        <div class="flex-shrink-0 w-10 h-10">
-                                                            <img class="w-full h-full rounded-full"
-                                                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                                                alt="" />
-                                                        </div>
-                                                        <div class="ml-3">
-                                                            <p class="text-gray-900 whitespace-no-wrap">
-                                                                Molly Sanders
-                                                            </p>
-                                                            <p class="text-gray-600 whitespace-no-wrap">000004</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <p class="text-gray-900 whitespace-no-wrap">$20,000</p>
-                                                    <p class="text-gray-600 whitespace-no-wrap">USD</p>
-                                                </td>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <p class="text-gray-900 whitespace-no-wrap">Sept 28, 2019</p>
-                                                    <p class="text-gray-600 whitespace-no-wrap">Due in 3 days</p>
-                                                </td>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <span
-                                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                                        <span aria-hidden
-                                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                                        <span class="relative">Paid</span>
-                                                    </span>
-                                                </td>
-                                                <td
-                                                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                                                    <button type="button"
-                                                        class="inline-block text-gray-500 hover:text-gray-700">
-                                                        <svg class="inline-block h-6 w-6 fill-current"
-                                                            viewBox="0 0 24 24">
-                                                            <path
-                                                                d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z" />
-                                                        </svg>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <div class="flex">
-                                                        <div class="flex-shrink-0 w-10 h-10">
-                                                            <img class="w-full h-full rounded-full"
-                                                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                                                alt="" />
-                                                        </div>
-                                                        <div class="ml-3">
-                                                            <p class="text-gray-900 whitespace-no-wrap">
-                                                                Michael Roberts
-                                                            </p>
-                                                            <p class="text-gray-600 whitespace-no-wrap">000003</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <p class="text-gray-900 whitespace-no-wrap">$214,000</p>
-                                                    <p class="text-gray-600 whitespace-no-wrap">USD</p>
-                                                </td>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <p class="text-gray-900 whitespace-no-wrap">Sept 25, 2019</p>
-                                                    <p class="text-gray-600 whitespace-no-wrap">Due in 6 days</p>
-                                                </td>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <span
-                                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                                        <span aria-hidden
-                                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                                        <span class="relative">Paid</span>
-                                                    </span>
-                                                </td>
-                                                <td
-                                                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                                                    <button type="button"
-                                                        class="inline-block text-gray-500 hover:text-gray-700">
-                                                        <svg class="inline-block h-6 w-6 fill-current"
-                                                            viewBox="0 0 24 24">
-                                                            <path
-                                                                d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z" />
-                                                        </svg>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <div class="flex">
-                                                        <div class="flex-shrink-0 w-10 h-10">
-                                                            <img class="w-full h-full rounded-full"
-                                                                src="https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                                                alt="" />
-                                                        </div>
-                                                        <div class="ml-3">
-                                                            <p class="text-gray-900 whitespace-no-wrap">
-                                                                Devin Childs
-                                                            </p>
-                                                            <p class="text-gray-600 whitespace-no-wrap">000002</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <p class="text-gray-900 whitespace-no-wrap">$20,000</p>
-                                                    <p class="text-gray-600 whitespace-no-wrap">USD</p>
-                                                </td>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <p class="text-gray-900 whitespace-no-wrap">Sept 14, 2019</p>
-                                                    <p class="text-gray-600 whitespace-no-wrap">Due in 2 weeks</p>
-                                                </td>
-                                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                    <span
-                                                        class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
-                                                        <span aria-hidden
-                                                            class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
-                                                        <span class="relative">Pending</span>
-                                                    </span>
-                                                </td>
-                                                <td
-                                                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                                                    <button type="button"
-                                                        class="inline-block text-gray-500 hover:text-gray-700">
-                                                        <svg class="inline-block h-6 w-6 fill-current"
-                                                            viewBox="0 0 24 24">
-                                                            <path
-                                                                d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z" />
-                                                        </svg>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-5 py-5 bg-white text-sm">
-                                                    <div class="flex">
-                                                        <div class="flex-shrink-0 w-10 h-10">
-                                                            <img class="w-full h-full rounded-full"
-                                                                src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&h=160&w=160&q=80"
-                                                                alt="" />
-                                                        </div>
-                                                        <div class="ml-3">
-                                                            <p class="text-gray-900 whitespace-no-wrap">
-                                                                Frederick Nicholas
-                                                            </p>
-                                                            <p class="text-gray-600 whitespace-no-wrap">000001</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-5 py-5 bg-white text-sm">
-                                                    <p class="text-gray-900 whitespace-no-wrap">$12,000</p>
-                                                    <p class="text-gray-600 whitespace-no-wrap">USD</p>
-                                                </td>
-                                                <td class="px-5 py-5 bg-white text-sm">
-                                                    <p class="text-gray-900 whitespace-no-wrap">Sept 6, 2019</p>
-                                                    <p class="text-gray-600 whitespace-no-wrap">
-                                                        Due 3 weeks ago
-                                                    </p>
-                                                </td>
-                                                <td class="px-5 py-5 bg-white text-sm">
-                                                    <span
-                                                        class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                                                        <span aria-hidden
-                                                            class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
-                                                        <span class="relative">Overdue</span>
-                                                    </span>
-                                                </td>
-                                                <td class="px-5 py-5 bg-white text-sm text-right">
-                                                    <button type="button"
-                                                        class="inline-block text-gray-500 hover:text-gray-700">
-                                                        <svg class="inline-block h-6 w-6 fill-current"
-                                                            viewBox="0 0 24 24">
-                                                            <path
-                                                                d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z" />
-                                                        </svg>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="mt-7 overflow-x-auto">
+                    <table class="w-full whitespace-nowrap">
+                        <tbody>
+                            <!-- heading -->
+                            <tr>
+                                <th scope="col" class="px-6 py-4 font-medium text-gray-900 text-left"></th>
+                                <th scope="col" class="px-6 py-4 font-medium text-gray-900 text-left">Student Number</th>
+                                <th scope="col" class="px-6 py-4 font-medium text-gray-900 text-left">Full Name</th>
+                                <th scope="col" class="px-6 py-4 font-medium text-gray-900 text-left">College</th>
+                                <th scope="col" class="px-6 py-4 font-medium text-gray-900 text-left">Year Level</th>
+                                <th scope="col" class="px-6 py-4 font-medium text-gray-900 text-left">Program</th>
+                                <th scope="col" class="px-6 py-4 font-medium text-gray-900 text-left">Major</th>
+                                <th scope="col" class="px-6 py-4 font-medium text-gray-900 text-left">Status</th>
+                                <th scope="col" class="px-6 py-4 font-medium text-gray-900 text-left"></th>
+                            </tr>
+                            <?php
+                            if(!empty($data)):
+                                foreach($data as $user ):
+                                    $id = $user['id'];
+                                    $student_number = $user['student_number'];
+                                    $status = $user['status'];
+                                    $fullname = $user['first_name'] .' '.$user['middle_name'].' '. $user['last_name'];
+                                    $gender = $user['gender'];
+                                    $dob = $user['dob'];
+                                    $age = $user['age'];
+                                    $contact = $user['contact'];
+                                    $address = $user['address'];
+                                    $email = $user['email'];
+                                    $college = $user['college'];
+                                    $year_level = $user['year_level'];
+                                    $program = $user['program'];
+                                    $major = $user['major'];
+                                    $site_name = $user['site_name'];
+                            ?>
+                            <tr tabindex="0" class="focus:outline-none h-16 border border-gray-100 rounded">
+                                <td>
+                                    <div class="ml-5">
+                                        <div class="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
+                                            <input placeholder="checkbox" type="checkbox" class="focus:opacity-100 checkbox opacity-0 absolute cursor-pointer w-full h-full" />
+                                            <div class="check-icon hidden bg-indigo-700 text-white rounded-sm">
+                                                <svg class="icon icon-tabler icon-tabler-check" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z"></path>
+                                                    <path d="M5 12l5 5l10 -10"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="flex items-center pl-5">
+                                        <p class="text-base font-medium leading-none text-gray-700 mr-2"><?=$student_number;?></p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M6.66669 9.33342C6.88394 9.55515 7.14325 9.73131 7.42944 9.85156C7.71562 9.97182 8.02293 10.0338 8.33335 10.0338C8.64378 10.0338 8.95108 9.97182 9.23727 9.85156C9.52345 9.73131 9.78277 9.55515 10 9.33342L12.6667 6.66676C13.1087 6.22473 13.357 5.62521 13.357 5.00009C13.357 4.37497 13.1087 3.77545 12.6667 3.33342C12.2247 2.89139 11.6251 2.64307 11 2.64307C10.3749 2.64307 9.77538 2.89139 9.33335 3.33342L9.00002 3.66676" stroke="#3B82F6" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M9.33336 6.66665C9.11611 6.44492 8.8568 6.26876 8.57061 6.14851C8.28442 6.02825 7.97712 5.96631 7.66669 5.96631C7.35627 5.96631 7.04897 6.02825 6.76278 6.14851C6.47659 6.26876 6.21728 6.44492 6.00003 6.66665L3.33336 9.33332C2.89133 9.77534 2.64301 10.3749 2.64301 11C2.64301 11.6251 2.89133 12.2246 3.33336 12.6666C3.77539 13.1087 4.37491 13.357 5.00003 13.357C5.62515 13.357 6.22467 13.1087 6.66669 12.6666L7.00003 12.3333" stroke="#3B82F6" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="flex items-center">
+                                        <p class="text-sm leading-none text-gray-600 ml-2"><?=$fullname;?></p>
+                                    </div>
+                                </td>
+                                <td class="pl-5">
+                                    <div class="flex items-center">
+                                        <p class="text-sm leading-none text-gray-600 ml-2 uppercase"><?=$college;?></p>
+                                    </div>
+                                </td>
+                                <td class="pl-5">
+                                    <div class="flex items-center">
+                                        <p class="text-sm leading-none text-gray-600 ml-2 uppercase"><?=$year_level;?></p>
+                                    </div>
+                                </td>
+                                <td class="pl-5">
+                                    <div class="flex items-center">
+                                        <p class="text-sm leading-none text-gray-600 ml-2 uppercase"><?=$program;?></p>
+                                    </div>
+                                </td>
+                                <td class="pl-5">
+                                    <div class="flex items-center">
+                                        <p class="text-sm leading-none text-gray-600 ml-2 uppercase"><?=$major;?></p>
+                                    </div>
+                                </td>
+                                <td class="pl-4">
+                                    <?php
+                                        if($status){
+                                            echo ' <button class="focus:ring-2 focus:ring-offset-2 focus:ring-green-300 text-sm leading-none text-green-600 py-3 px-5 bg-green-100 rounded hover:bg-green-100 focus:outline-none">Active</button>';
+                                        }else{
+                                            echo ' <button class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none">Inactive</button>';
+
+                                        }
+                                    ?>
+                                   
+                                </td>
+                                <td>
+                                    <div class="relative px-5 pt-2">
+                                        <button class="focus:ring-2 rounded-md focus:outline-none" onclick="dropdownFunction(this)" role="button" aria-label="option">
+                                            <svg class="dropbtn" onclick="dropdownFunction(this)" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                <path d="M4.16667 10.8332C4.62691 10.8332 5 10.4601 5 9.99984C5 9.5396 4.62691 9.1665 4.16667 9.1665C3.70643 9.1665 3.33334 9.5396 3.33334 9.99984C3.33334 10.4601 3.70643 10.8332 4.16667 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M10 10.8332C10.4602 10.8332 10.8333 10.4601 10.8333 9.99984C10.8333 9.5396 10.4602 9.1665 10 9.1665C9.53976 9.1665 9.16666 9.5396 9.16666 9.99984C9.16666 10.4601 9.53976 10.8332 10 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M15.8333 10.8332C16.2936 10.8332 16.6667 10.4601 16.6667 9.99984C16.6667 9.5396 16.2936 9.1665 15.8333 9.1665C15.3731 9.1665 15 9.5396 15 9.99984C15 10.4601 15.3731 10.8332 15.8333 10.8332Z" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                        </button>
+                                        <div class="dropdown-content bg-white shadow w-24 absolute z-30 right-0 mr-6 hidden">
+                                            <div tabindex="0" class="focus:outline-none focus:text-indigo-600 text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
+                                                <p>Edit</p>
+                                            </div>
+                                            <div tabindex="0" class="focus:outline-none focus:text-indigo-600 text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
+                                                <p>Delete</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="h-3"></tr>
+                            <?php
+                                endforeach;
+                            endif;
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        </section>
-        </main>
-    </div>
-    </div>
-    <!-- <script src="/src/vue.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
-    <script>
-    new Vue({
-        el: '#app',
-        data: {
-            menu: false,
-            panel: false,
-        },
-        computed: {
+<style>
+.checkbox:checked + .check-icon {
+    display: flex;
+    }
+</style>
+<script>
+    let data = <?=json_encode($data);?>;
 
+    async function sendDataToWebApp(data){
+        fetch('http://localhost/ilms/webapp/api.php', {
+        method: 'POST',
+        mode: 'cors' ,
+        headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        methods: {
-            menus() {
-                console.log('clickes');
-            }
-        },
-        mounted() {
-
-        },
-        updated() {
-
-        },
-    });
-    </script>
-</body>
-
-</html>
+        body:JSON.stringify(data)
+        // body:data
+        })
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(error => console.error(error));
+    }
+   
+    
+</script>
+<?php include dirname(__DIR__).'/layout/footer.php' ;?>
