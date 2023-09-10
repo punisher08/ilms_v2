@@ -56,7 +56,7 @@ class Auth {
         $_SESSION['email'] = $user['email'];
         $_SESSION['contact'] = $user['contact'];
         $_SESSION['address'] = $user['address'];
-        $_SESSION['avatar'] = $user['avatar'];
+    
         $_SESSION['auth'] = true;
     }
 

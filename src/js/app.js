@@ -120,7 +120,9 @@ if(nextButton){
     });
 }
 
-    prevButton.addEventListener('click',async () => {
-        await prev();
-    });
+prevButton.addEventListener('click',async () => {
+    await prev();
+});
+
+
 

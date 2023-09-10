@@ -11,7 +11,13 @@ $('._actions').on('click',function(){
         dropdown = true;
     }
 })
-$('.editform_btn').on('click',function(){
-    let id = $(this).attr('data-id');
-    $('#form_'+id).submit();
-})
+let menu = false;
+$('#menu').on('click',function(){
+    if(menu){
+        $('#aside').removeClass('hidden');
+        menu = false;
+    }else{
+        $('#aside').addClass('hidden');
+        menu = true;
+    }
+ })

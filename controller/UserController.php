@@ -69,9 +69,26 @@ class UserController extends Redirect {
         header('Location: /login');
      }
     public function getAllUsers() {
-        $query = $this->db->prepare("SELECT * FROM `master_list` ");
+        $recordsPerPage = (isset($_GET['count'])) ? $_GET['count'] : 5;
+        $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+        $offset = ($currentPage - 1) * $recordsPerPage;
+
+        $query = $this->db->prepare("SELECT * FROM `master_list` LIMIT :limit OFFSET :offset");
+        $query->bindParam(':limit', $recordsPerPage);
+        $query->bindParam(':offset', $offset);
         $query->execute();
-        $data = $query->fetchAll();
+        $master_list = $query->fetchAll();
+    
+
+        $totalCountQuery = $this->db->query("SELECT COUNT(*) FROM `master_list`");
+        $totalCount = $totalCountQuery->fetchColumn();
+
+        $totalPages = ceil($totalCount / $recordsPerPage);  
+        $data = [
+            'master_list' => $master_list,
+            'current_page' => $currentPage,
+            'total_page' => $totalPages,
+        ];
         return $this->view($this->config, 'admin/userlist',$data);
      }
 
@@ -204,6 +221,17 @@ class UserController extends Redirect {
         exit();
 
     }
+
+    public function deleteUser(){
+        $id = $_POST['id'];
+        $query = $this->db->prepare("DELETE FROM `master_list` WHERE `id` = $id");
+        $query->execute();
+        
+        header("Location: /masterlist?deleted=true");
+        
+    }
+   
+
 
  
     

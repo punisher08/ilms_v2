@@ -29,8 +29,10 @@ $routes = [
     '/dashboard' => 'UserController@index',
     '/student' => 'UserController@profile',
     '/masterlist' => 'UserController@getAllUsers',
-    '/masterlist/add' => 'UserController@addStudent',
     '/masterlist/update' => 'UserController@update',
+    '/masterlist/delete' => 'UserController@deleteUser',
+    '/masterlist/paginate' => 'UserController@getAllUsers',
+    '/masterlist/add' => 'UserController@addStudent',
     '/masterlist/register' => 'UserController@register',
     
     // update password

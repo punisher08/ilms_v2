@@ -1,7 +1,7 @@
 <?php include dirname(__DIR__).'/layout/header.php' ;?>
 
 <main class="p-6 sm:p-10 space-y-6">
-   <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
+   <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between" >
       <div class="mr-6">
          <h1 class="text-4xl font-semibold mb-2">Dashboard</h1>
          <h2 class="text-gray-600 ml-0.5">Mobile UX/UI Design course</h2>
@@ -87,6 +87,8 @@
       </div> -->
    </section>
 </main>
+
+<?php include dirname(__DIR__).'/layout/footer.php' ;?>
 <script>
    let data = <?=json_encode($data['master_list']);?>;
    console.log(data);
@@ -106,5 +108,5 @@
       .then(response => console.log(response))
       .catch(error => console.error(error));
    }
+ 
 </script>
-<?php include dirname(__DIR__).'/layout/footer.php' ;?>

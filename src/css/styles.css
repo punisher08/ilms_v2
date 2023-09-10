@@ -137,4 +137,20 @@ header #panel:hover ~ #_submenu {
   background: #dcfce7;
   color: #16a34a !important;
 }
+
+@media screen and (max-width: 768px) {
+  #usertable {
+    display: none !important;
+  }
+}
+
+#usertable_mobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #usertable_mobile {
+    display: block !important;
+  }
+}
 /*# sourceMappingURL=styles.css.map */

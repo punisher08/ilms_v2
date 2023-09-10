@@ -18,7 +18,7 @@
  $major = $data['major'];
  $site_name = $data['site_name'];
 ?>
-<form action="/masterlist/update" method="post">
+<form action="/masterlist/update" method="post" id="update_info">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-5 py-5 _info">
         <input type="hidden" name="id" value="<?=$id;?>">
         <div class="-mx-3 md:flex mb-6">
@@ -145,7 +145,7 @@
         </div>
     </div>
         <div class="flex my-2 py-2">
-            <button type="submit" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
+            <button type="button" id="updateForm"class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
               <p class="text-sm font-medium leading-none text-white">Update</p>
             </button>
         </div>
@@ -154,3 +154,20 @@
 
 </main>
 <?php include dirname(__DIR__).'/layout/footer.php' ;?>
+<script>
+        $('#updateForm').on('click',function(e){
+        Swal.fire({
+            title: 'Updating Profile!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continue'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $('#update_info').submit();
+            }
+        })
+        
+    })
+</script>
