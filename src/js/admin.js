@@ -1,13 +1,17 @@
-let menu = true;
-$('#menu').on('click',function(e){
-    if(menu){
-        $('#nav_menu').find('a').hide();
+let dropdown = false;
+$('._actions').on('click',function(){
+    let target = $(this).attr('data-id');
+    $('.dropdown-content').hide();
+    if(dropdown){
+        $('.'+target).hide();
+        dropdown = false;
+        
     }else{
-        $('#nav_menu').find('a').show();
+        $('.'+target).show();
+        dropdown = true;
     }
 })
-// let export_button = true;
-// $('#dropdownDividerButton').on('click',function(e){
-//     $('#dropdownDivider').toggleClass('hidden');
-// })
-// JSON.stringify
+$('.editform_btn').on('click',function(){
+    let id = $(this).attr('data-id');
+    $('#form_'+id).submit();
+})

@@ -23,18 +23,20 @@ $routes = [
     '/api/userList' => 'HomeController@validateUser',
     
     // Authenticated User
-    '/dashboard' => 'UserController@index',
     '/signin' => 'UserController@signin',
     '/logout' => 'UserController@signout',
-    '/profile' => 'UserController@profile',
+    
+    '/dashboard' => 'UserController@index',
+    '/student' => 'UserController@profile',
     '/masterlist' => 'UserController@getAllUsers',
     '/masterlist/add' => 'UserController@addStudent',
+    '/masterlist/update' => 'UserController@update',
     '/masterlist/register' => 'UserController@register',
+    
+    // update password
     '/password/reset' => 'HomeController@resetPassword',
     '/send/password/reset' => 'HomeController@sendResetPassword',
     '/password/reset/form' => 'HomeController@createNewpassword',
-    
-    // update password
     '/password/update' => 'HomeController@update_password',
 
 

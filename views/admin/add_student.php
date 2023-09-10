@@ -1,4 +1,12 @@
 <?php include dirname(__DIR__).'/layout/header.php' ;?>
+<?php
+  $response = 'hidden';
+  $register_class = '';
+  if(isset($_GET['registration'])){
+    $response = '';
+    $register_class = 'hidden';
+  }
+  ?>
 <!-- component -->
   <div class="grid lg:grid-cols-2 grid-cols-1 registration_form <?=$register_class;?>">
     <div class="item" style="height:80vh;">
@@ -123,6 +131,24 @@
     <div class="item sm:hidden lg:block" >
     </div>
   </div>
-     
+
+<section>
+<div class="bg-gray-100 <?=$response;?>" >
+        <div class=" p-6  md:mx-auto">
+          <div class="text-green-600 w-16 h-16 mx-auto my-6">
+            <img src="/src/images/error.webp" alt="">
+          </div>
+          <div class="text-center">
+              <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Student Number or Email Already registered</h3>
+              <p class="text-gray-600 my-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam culpa sint libero nesciunt, voluptatem debitis ad nostrum eaque tenetur unde.</p>
+              <div class="py-10 text-center">
+                  <a href="/masterlist/add" class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
+                      GO BACK 
+                </a>
+              </div>
+          </div>
+        </div>
+      </div>
+</section>
 <script src="/src/js/app.js"></script>
 <?php include dirname(__DIR__).'/layout/footer.php' ;?>

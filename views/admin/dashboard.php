@@ -42,8 +42,8 @@
             </svg>
          </div>
          <div>
-            <span class="block text-2xl font-bold"><?=$data['active_list'];?></span>
-            <span class="block text-gray-500">Active Students</span>
+            <span class="block text-2xl font-bold"><?=$data['master_list'];?></span>
+            <span class="block text-gray-500">Total Students</span>
          </div>
       </div>
       <div class="flex items-center p-8 bg-white shadow rounded-lg">
@@ -55,8 +55,8 @@
             </svg>
          </div>
          <div>
-            <span class="block text-2xl font-bold"><?=$data['inactive_list'];?></span>
-            <span class="block text-gray-500">Average mark</span>
+            <span class="block text-2xl font-bold"><?=$data['active_list'];?></span>
+            <span class="block text-gray-500">Active Students </span>
          </div>
       </div>
       <div class="flex items-center p-8 bg-white shadow rounded-lg">
@@ -68,12 +68,11 @@
             </svg>
          </div>
          <div>
-            <span class="inline-block text-2xl font-bold">9</span>
-            <span class="inline-block text-xl text-gray-500 font-semibold">(14%)</span>
-            <span class="block text-gray-500">Underperforming students</span>
+            <span class="inline-block text-2xl font-bold"><?=$data['inactive_list'];?></span>
+            <span class="block text-gray-500">Inactive Students</span>
          </div>
       </div>
-      <div class="flex items-center p-8 bg-white shadow rounded-lg">
+      <!-- <div class="flex items-center p-8 bg-white shadow rounded-lg">
          <div
             class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-blue-600 bg-blue-100 rounded-full mr-6">
             <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
@@ -85,7 +84,7 @@
             <span class="block text-2xl font-bold">83%</span>
             <span class="block text-gray-500">Finished homeworks</span>
          </div>
-      </div>
+      </div> -->
    </section>
 </main>
 <script>

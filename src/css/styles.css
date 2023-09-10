@@ -26,6 +26,7 @@ header #panel:hover ~ #_submenu {
     display: block;
   }
 }
+
 @media screen and (max-width: 768px) {
   .aside_menu {
     display: none !important;
@@ -36,18 +37,22 @@ header #panel:hover ~ #_submenu {
   margin-top: 20px;
   padding: 10px;
 }
-.registration_form .item:nth-child(1) input[type=date], .registration_form .item:nth-child(1) select[type=date] {
+
+.registration_form .item:nth-child(1) input[type="date"], .registration_form .item:nth-child(1) select[type="date"] {
   margin-top: 0px;
 }
+
 .registration_form .item:nth-child(1) input.required, .registration_form .item:nth-child(1) select.required {
   border: 1px solid #ff0000;
 }
+
 .registration_form .item:nth-child(2) {
   background-image: url(/src/images/register.png);
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 @media screen and (max-width: 768px) {
   .registration_form .item:nth-child(2) {
     display: none !important;
@@ -57,6 +62,7 @@ header #panel:hover ~ #_submenu {
 .user_list ._user_list_container {
   width: 100% !important;
 }
+
 .user_list ._user_list_container table {
   width: 100% !important;
 }
@@ -68,14 +74,67 @@ header #panel:hover ~ #_submenu {
 #dataTable tbody tr:nth-child(odd) {
   background: white;
 }
+
 #dataTable tbody tr:nth-child(odd) td {
   font-weight: bold;
   padding: 1rem;
 }
+
 #dataTable tbody tr:nth-child(even) {
   background: #f9fafb;
 }
+
 #dataTable tbody tr:nth-child(even) td {
   font-weight: bold;
   padding: 1rem;
-}/*# sourceMappingURL=styles.css.map */
+}
+
+._profile {
+  max-width: 100%;
+  width: 90%;
+}
+
+._profile ._title {
+  margin-bottom: 40px;
+}
+
+._profile input {
+  border: 1px solid #eee;
+  text-transform: uppercase;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+._profile input[type="email"] {
+  border: 1px solid #eee;
+  text-transform: lowercase;
+}
+
+._profile input[type="checkbox"] {
+  width: 15px;
+  margin-right: 10px;
+}
+
+._profile .uppercase {
+  text-transform: uppercase;
+}
+
+._profile .lowercase {
+  text-transform: lowercase;
+}
+
+._profile ._info {
+  padding: 5rem;
+}
+
+._profile ._status .mx-2 {
+  margin-left: 10px;
+}
+
+._profile ._active {
+  border: 2px solid #a6e5bb;
+  background: #dcfce7;
+  color: #16a34a !important;
+}
+/*# sourceMappingURL=styles.css.map */

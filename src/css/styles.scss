@@ -94,5 +94,48 @@ header{
     }
   }
 
+  ._profile{
+    max-width: 100%;
+    width: 90%;  
+    ._title{
+      margin-bottom: 40px;
+    }
+    input{
+      // border: none;
+      border: 1px solid #eee;
+      text-transform: uppercase;
+      width: max-content;
+      // padding:;
+    }
+    input[type="email"]{
+      border: 1px solid #eee;
+      text-transform: lowercase;
+    }
+    input[type="checkbox"]{
+     width: 15px;
+     margin-right: 10px;
+    }
+    .uppercase{
+      text-transform: uppercase;
+    }
+    .lowercase{
+      text-transform: lowercase;
+    }
+    ._info{
+      padding: 5rem;
+    }
+    ._status{
+      .mx-2{
+        margin-left: 10px;
+      }
+    }
+    ._active{
+      border: 2px solid #a6e5bb;
+      background: #dcfce7;
+      color: #16a34a !important;
+    }
+
+  }
+
 
   

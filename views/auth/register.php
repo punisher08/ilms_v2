@@ -181,7 +181,6 @@
           <div class="text-center">
               <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Registration Successful</h3>
               <p class="text-gray-600 my-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam culpa sint libero nesciunt, voluptatem debitis ad nostrum eaque tenetur unde.</p>
-              <p class="md:text-1xl text-base text-gray-900 font-semibold text-center"> Please check your email inbox</p>
               <div class="py-10 text-center">
                   <a href="/login" class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
                       GO BACK 
@@ -196,9 +195,8 @@
             <img src="src/images/error.webp" alt="">
           </div>
           <div class="text-center">
-              <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Student Number Already registered</h3>
+              <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Student Number or Email Already registered</h3>
               <p class="text-gray-600 my-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam culpa sint libero nesciunt, voluptatem debitis ad nostrum eaque tenetur unde.</p>
-              <p class="md:text-1xl text-base text-gray-900 font-semibold text-center"> Please check your email inbox</p>
               <div class="py-10 text-center">
                   <a href="/login" class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
                       GO BACK 

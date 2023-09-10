@@ -6,7 +6,6 @@ const submit_registration = document.getElementById('submit_registration');
 const studentId = document.getElementById('student_number');
 let idIsvalid = false;
 
-
 let currentForm = null;
 let isValid = false;
 let active_step = 0;
@@ -119,8 +118,9 @@ if(nextButton){
     nextButton.addEventListener('click',async () => {
         await next();
     });
-}else if(prevButton){
+}
+
     prevButton.addEventListener('click',async () => {
         await prev();
     });
-}
+
